@@ -8,7 +8,7 @@ public class GradeFilter {
 
 	private String regNumber;
 	
-	private String name;
+	private String studentName;
 	
 	private String courseName;
 	

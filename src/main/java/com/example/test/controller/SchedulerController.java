@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.test.service.SchedulerService;
@@ -32,7 +33,7 @@ public class SchedulerController {
 	}
 	
 	@PostMapping("/reschedule")
-	public Map<String, Object> rescheduleJob(String cron) {
+	public Map<String, Object> rescheduleJob(@RequestParam String cron) {
 		try {
 			schedulerService.rescheduleJob(cron);
 			return toResposne("ok", "reschedule job with cron successful");

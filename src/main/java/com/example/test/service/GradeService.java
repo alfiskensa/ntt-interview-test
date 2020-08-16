@@ -32,8 +32,8 @@ public class GradeService {
 			predicates.add(grade.student.regNumber.eq(filter.getRegNumber()));
 		if(filter.getCourseName() != null)
 			predicates.add(grade.course.name.eq(filter.getCourseName()));
-		if(filter.getName() != null)
-			predicates.add(grade.student.name.eq(filter.getName()));
+		if(filter.getStudentName() != null)
+			predicates.add(grade.student.name.eq(filter.getStudentName()));
 		if(filter.getScore() != null)
 			predicates.add(grade.score.eq(Integer.parseInt(filter.getScore())));
 		
