@@ -24,23 +24,22 @@ $ cd test
 $ mvn clean package or mvn spring-boot:run
 ```
 
-before running and testing app make sure csv files is exist in ./data/uploads for reading data and write it to database
-
-
+* before running and testing app make sure csv files is exist in ./data/uploads for reading data and write it to database.
+* default scheduler for upadte data from files to database is every 1 minute, so just wait for data will be updated.
 
 ## API Documentation
 
 Note: *please run application first to enable [links](http://localhost:8080/swagger-ui.html) for specification details*
-* [Show All Grade of Students](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/test-controller/findGrades) : `GET ​/test​/grade?regNumber={nomor_induk}&studentName={"nama_siswa"}&courseName={mata_pelajaran}&score={nilai}` PS: *the query parameters are optional*
+* [Show All Grade of Students](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/test-controller/findGrades) : `GET ​/test​/grade?regNumber={nomor_induk}&studentName={nama_siswa}&courseName={mata_pelajaran}&score={nilai}` PS: *the query parameters are optional*
 * [Update Grade](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/test-controller/updateGrade) : `PUT ​/test​/grade` for specification request body just need studentId, courseId and score
 * [Delete Grade](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/test-controller/deleteGrade) : `DELETE ​/test​/grade​/{id}` id of grade in table
 * [Scheduler Execute Manually](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/scheduler-controller/executeManually) : `GET ​/scheduler​/execute` this will be manually execute the job for getting data in csv file and store it to database
-* [Reschedule Cron](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/scheduler-controller/rescheduleJob) : `POST ​/scheduler​/reschedule?cron={cron_expression}` you can generate cron expression [here](https://www.freeformatter.com/cron-expression-generator-quartz.html)
+* [Reschedule Cron](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/scheduler-controller/rescheduleJob) : `POST ​/scheduler​/reschedule?cron={cron_expression}` you can generate cron expression [here](https://www.freeformatter.com/cron-expression-generator-quartz.html). The default cron is every 1 minute, so hit this api if you want to change cron scheduler
 
 
 
 ## Future Development
-* all files will in directory ./data/uploads will be read by application during scheduler is running. It can happens if there are many files in directory, application will busy to read files while the file is already executed. To be concern this issue. We can make Regular Expression validation to read data by speficiation date. So the file name will be siswa_20200816_184056.csv which `20200816` is the current date and `184056` is specification time. So it can reduce application usage to read files which is the file is validated with specification datetime. The code can be found in [here](/src/main/java/com/example/test/job/UpdateDataJob.java)
+* All files will in directory ./data/uploads will be read by application during scheduler is running. It can happens if there are many files in directory, application will busy to read files while the file is already executed. To be concern this issue. We can make Regular Expression validation to read data by speficiation date. So the file name will be siswa_20200816_184056.csv which `20200816` is the current date and `184056` is specification time. So it can reduce application usage to read files which is the file is validated with specification datetime. The code can be found in [here](/src/main/java/com/example/test/job/UpdateDataJob.java)
 
 
 ## Built With
