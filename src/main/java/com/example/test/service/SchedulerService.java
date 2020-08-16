@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class SchedulerService {
 	
-	private static final String CRON_EVERY_FIVE_MINUTES = "0 0/1 * ? * * *";
+	private static final String CRON_EVERY_MINUTES = "0 0/1 * ? * * *";
 	
 	private String jobId = "grade.job";
 	
@@ -50,7 +50,7 @@ public class SchedulerService {
 				.withIdentity(triggerKey)
 				.startNow()
 				.forJob(scheduler.getJobDetail(jobKey))
-	    		.withSchedule(CronScheduleBuilder.cronSchedule(CRON_EVERY_FIVE_MINUTES))
+	    		.withSchedule(CronScheduleBuilder.cronSchedule(CRON_EVERY_MINUTES))
 	    		.build();
 		
 		scheduler.scheduleJob(trigger);
